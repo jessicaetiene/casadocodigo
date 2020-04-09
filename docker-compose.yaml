@@ -7,4 +7,6 @@ services:
       - MYSQL_USER=root
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - src/main/resources/volume_mysql:/var/lib/mysql
+      - volume_mysql:/var/lib/mysql
+volumes:
+  volume_mysql:
