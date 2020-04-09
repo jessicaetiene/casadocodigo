@@ -1,7 +1,12 @@
 package br.com.casadocodigo.loja.dao;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,4 +46,22 @@ public class ProdutoDAO {
 	    query.setParameter("tipoPreco", tipoPreco);
 	    return query.getSingleResult();
 	}
+
+	public List<Produto> relatorio(String data) throws ParseException {
+		if(Objects.nonNull(data)){
+			return filtrarPorData(data);
+		}
+		return listar();
+	}
+
+	private List<Produto> filtrarPorData(String data) throws ParseException {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		cal.setTime(sdf.parse(data));
+		TypedQuery<Produto> query = manager.createQuery("select p from Produto p join p.precos preco "
+				+ "where p.dataLancamento = :data", Produto.class);
+		query.setParameter("data", cal);
+		return query.getResultList();
+	}
+
 }
