@@ -47,20 +47,16 @@ public class ProdutoDAO {
 	    return query.getSingleResult();
 	}
 
-	public List<Produto> relatorio(String data) throws ParseException {
+	public List<Produto> relatorio(Calendar data) {
 		if(Objects.nonNull(data)){
 			return filtrarPorData(data);
 		}
 		return listar();
 	}
 
-	private List<Produto> filtrarPorData(String data) throws ParseException {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		cal.setTime(sdf.parse(data));
-		TypedQuery<Produto> query = manager.createQuery("select p from Produto p join p.precos preco "
-				+ "where p.dataLancamento = :data", Produto.class);
-		query.setParameter("data", cal);
+	private List<Produto> filtrarPorData(Calendar data){
+		TypedQuery<Produto> query = manager.createQuery("select p from Produto p where p.dataLancamento > :data", Produto.class);
+		query.setParameter("data", data);
 		return query.getResultList();
 	}
 
