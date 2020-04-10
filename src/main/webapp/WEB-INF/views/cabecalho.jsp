@@ -16,6 +16,14 @@
 						<li><a href="${s:mvcUrl('PC#listar').build() }" rel="nofollow"><fmt:message key="menu.lista_produtos"/></a></li>
 						<li><a href="${s:mvcUrl('PC#form').build() }" rel="nofollow"><fmt:message key="menu.cadastro_produtos"/></a></li>
 					</security:authorize>
+					<security:authorize access="hasRole('ROLE_ADMIN')">
+						<li>
+							<a href="${s:mvcUrl('PC#pedidos').build() }" rel="nofollow">
+								<s:message code="menu.pedidos" />
+							</a>
+						</li>
+					</security:authorize>
+
 						<li>
 							<a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">
 								<s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />

@@ -58,6 +58,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 		// resolver.setExposeContextBeansAsAttributes(true);
 		resolver.setExposedContextBeanNames("carrinhoCompras");
+		resolver.setExposedContextBeanNames("pedido");
 
 		return resolver;
 	}

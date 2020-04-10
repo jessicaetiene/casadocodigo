@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class DateUtils {
 
+    public static final String FORMATO_DD_MM_YY = "dd/MM/yy";
+
     public static Calendar localDateToCalendar(LocalDate localDate) {
         if(localDate == null){
             return null;
