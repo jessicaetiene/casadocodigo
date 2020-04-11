@@ -8,6 +8,7 @@ import br.com.casadocodigo.loja.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,10 +23,10 @@ public class RelatorioProdutosController {
     @Autowired
     private ProdutoDAO produtoDAO;
 
-  @Autowired
+    @Autowired
     private ConversorRelatorioProduto conversorRelatorioProduto;
 
-    @RequestMapping( method= RequestMethod.GET)
+    @GetMapping
     @ResponseBody
     public RelatorioProdutoDTO gerarRelatorio(@RequestParam(required = false)
                                               @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate data){

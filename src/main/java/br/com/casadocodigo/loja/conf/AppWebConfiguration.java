@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 import br.com.casadocodigo.loja.converter.ConversorProduto;
 import br.com.casadocodigo.loja.converter.ConversorRelatorioProduto;
+import br.com.casadocodigo.loja.validation.EmailValidation;
+import br.com.casadocodigo.loja.validation.UsuarioValidation;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.guava.GuavaCacheManager;
@@ -45,7 +47,7 @@ import br.com.casadocodigo.loja.models.CarrinhoCompras;
 
 @EnableWebMvc
 @ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class,
-		ConversorRelatorioProduto.class, ConversorProduto.class})
+		ConversorRelatorioProduto.class, ConversorProduto.class, UsuarioValidation.class, EmailValidation.class})
 @EnableCaching
 @EnableAspectJAutoProxy(proxyTargetClass = true) 
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {

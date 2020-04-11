@@ -24,6 +24,14 @@
 						</li>
 					</security:authorize>
 
+					<security:authorize access="hasRole('ROLE_ADMIN')">
+						<li>
+							<a href="${s:mvcUrl('UC#listar').build() }" rel="nofollow">
+								<s:message code="menu.usuarios" />
+							</a>
+						</li>
+					</security:authorize>
+
 						<li>
 							<a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">
 								<s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />

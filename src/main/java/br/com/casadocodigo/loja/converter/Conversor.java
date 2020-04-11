@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public interface Conversor<E, T> {
 
-    T converter(E entidade);
+    T converter(E objeto);
 
     default List<T> converterList(List<E> listaEntidade){
         return listaEntidade.stream().map(this::converter).collect(Collectors.toList());
