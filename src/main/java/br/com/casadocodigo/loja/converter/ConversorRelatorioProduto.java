@@ -18,7 +18,7 @@ public class ConversorRelatorioProduto {
     private ConversorProduto conversorProduto;
 
     public RelatorioProdutoDTO conventer(List<Produto> produtos){
-        List<ProdutoDTO> produtoConvertidos = conversorProduto.converterList(produtos);
+        List<ProdutoDTO> produtoConvertidos = conversorProduto.converterParaDTO(produtos);
         return RelatorioProdutoDTO.builder()
                 .dataGeracao(Calendar.getInstance().getTimeInMillis())
                 .produtos(produtoConvertidos)

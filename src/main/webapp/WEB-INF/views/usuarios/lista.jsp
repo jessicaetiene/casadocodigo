@@ -5,27 +5,29 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 
 <tags:pageTemplate titulo="Cadastro de Usuário">
-	<jsp:attribute name="extraScripts">
-   		<c:url value="/resources/css" var="cssPath" />
-		<link rel="stylesheet" href="${cssPath}/bootstrap.min.css" />
-		<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css" />
-	</jsp:attribute>
 	<jsp:body>
-
 			<div class="container">
-				<a href="${s:mvcUrl('UC#form').build() }" class="btn btn-primary  ui-icon-plus">Novo Usuario</a>
+				<a href="${s:mvcUrl('UC#form').build() }">Novo Usuario</a>
 				<h1>Lista de Usuários</h1>
 				<p> ${sucesso} </p>
 
-				<table class="table table-bordered table-striped table-hover">
+				<table>
 					<tr>
 						<th>Nome</th>
 						<th>Email</th>
+						<th>Roles</th>
+						<th></th>
 					</tr>
 					<c:forEach items="${usuarios }" var="usuario">
 						<tr>
 							<td>${usuario.nome }</td>
 							<td>${usuario.email }</td>
+							<td>
+								<c:if test="${not empty usuario.roles }">
+									${usuario.roles }
+								</c:if>
+							</td>
+							<td><a href="${s:mvcUrl('UC#formRole').arg(0, usuario.email).build() }">+</a></td>
 						</tr>
 					</c:forEach>
 				</table>

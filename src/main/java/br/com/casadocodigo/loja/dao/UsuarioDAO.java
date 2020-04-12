@@ -52,4 +52,8 @@ public class UsuarioDAO implements UserDetailsService{
 		return manager.createQuery("select distinct(u) from Usuario u", Usuario.class)
 				.getResultList();
 	}
+
+    public void atualizarRoles(Usuario usuarioAlterado) {
+		manager.merge(usuarioAlterado);
+    }
 }

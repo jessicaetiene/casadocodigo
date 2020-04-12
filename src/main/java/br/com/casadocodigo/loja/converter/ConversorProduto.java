@@ -13,9 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class ConversorProduto implements Conversor<Produto, ProdutoDTO>  {
 
-
     @Override
-    public ProdutoDTO converter(Produto produto) {
+    public ProdutoDTO converterParaDTO(Produto produto) {
         return ProdutoDTO.builder()
                 .id(produto.getId())
                 .titulo(produto.getTitulo())
@@ -25,6 +24,11 @@ public class ConversorProduto implements Conversor<Produto, ProdutoDTO>  {
                 .paginas(produto.getPaginas())
                 .precos(precos(produto.getPrecos()))
                 .build();
+    }
+
+    @Override
+    public Produto converterParaEntidade(ProdutoDTO dto) {
+        return null;
     }
 
     private List<PrecoDTO> precos(List<Preco> precos) {
@@ -37,4 +41,6 @@ public class ConversorProduto implements Conversor<Produto, ProdutoDTO>  {
                 .tipo(preco.getTipo())
                 .build();
     }
+
+
 }
